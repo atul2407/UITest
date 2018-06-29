@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Apple UI Test</title>
+
+    <script src="scripts/jquery-3.2.1.js" type="text/javascript"></script>
+    <script src="data/employee.js" type="text/javascript"></script>
+    <script src="scripts/grid.js" type="text/javascript"></script>
+    <link href="content/bootstrap.min.css" rel="stylesheet" />
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/jquery.modal.min.js"></script>
+    <link href="content/jquery.modal.min.css" rel="stylesheet" />
+
+     	
+    <style>
+        div.grid {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%
+        } 
+
+        table {
+                width: 90%;
+                font-size:0.8rem
+            }
+
+        .modal a.close-modal {
+            top: 12.5px !important;
+            right: 12.5px  !important;
+        }
+
+        #editModal input {
+            width:200px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="grid">
+        <div>
+            <div style="font-size:xx-large;font:bolder">Apple Employees Details - Demo</div>
+            <div><input id="btnAdd" value="Add New" onclick="Apple.Grid.addRow(this);" type="button"/></div>
+        </div>
+        <table id="jqGrid" class="table table-striped thead-light table-responsive" style="overflow-y: scroll; height:400px;width:1200px;">
+            <thead style="background-color:lightgrey;">
+              <tr>
+                <th style="width:200px;">Name</th>
+                <th style="width:250px;">Email</th>
+                <th style="width:250px;">Title</th>
+                <th style="width:200px;">Department</th>
+                <th style="width:200px;">Location</th>
+                <th style="width:50px;">&nbsp;</th>
+                <th style="width:50px;">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div id="jqGridPager"></div>
+        <span class="oi oi-person"  ></span>
+    </div>
+
+    <div id="editModal" class="modal" style="font-size:0.8rem">
+        <div class="row table" style="font-size:x-large;font:bolder">
+            Employee Details
+        </div>
+       <div class="row table">
+            <div class="col-lg-3 col-md-3">
+                Name:
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <input id="txtName" />
+            </div>
+        </div>
+        <div class="row table">
+            <div class="col-lg-3 col-md-3">
+                Email:
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <input id="txtEmail" />
+            </div>
+        </div>
+        <div class="row table">
+            <div class="col-lg-3 col-md-3">
+                Title:
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <input id="txtTitle" />
+            </div>
+        </div>
+        <div class="row table">
+            <div class="col-lg-3 col-md-3">
+                Department:
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <input id="txtDepartment" />
+            </div>
+        </div>
+        <div class="row table">
+            <div class="col-lg-3 col-md-3">
+                Location:
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <input id="txtLocation" />
+            </div>
+        </div>
+        <div class="row table" style="float:right">
+            <div class="col-lg-3 col-md-3">
+                 <input id="btnSubmit" type="button" value="Submit" style="width:100px;" onclick="Apple.Grid.submitRequest();"/>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <input id="btnCancel" type="button" value="Cancel"  style="width:100px;" onclick="Apple.Grid.cancelEdit();"/>
+            </div>
+        </div>
+</div>
+</body>
+</html>
+
