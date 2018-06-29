@@ -25,17 +25,10 @@ Apple.Grid = (function () {
 
     var isAddMode = false;
     var AddRow = function (row) {
-        $('#editModal').modal();
-        var name = $('#txtName');
-        var email = $('#txtEmail');
-        name.removeAttr('readonly');
-        email.removeAttr('readonly');
-
-        name.val('');
-        email.val('');
-        $('#txtTitle').val('');
-        $('#txtDepartment').val('');
-        $('#txtLocation').val('');
+        var modalWin = $('#editModal');
+        modalWin.modal();
+        modalWin.find('input').val('');
+        modalWin.find('input').removeAttr('readonly');
         isAddMode = true;
     };
 
@@ -58,8 +51,11 @@ Apple.Grid = (function () {
     var DeleteRow = function (row) {
         var tr = $(row).parent().parent();
         var name = tr.find('#tdName').html();
-        if (confirm('Are you sure wants to delete this employee ?'))
+        if (confirm('Are you sure wants to delete this employee record ?'))
         {
+            //Note: This code is updating only to local JSON object. 
+            //In realtime scenario i.e. integration with RESTful service, data is posted via AJAX call.
+
             gridData = gridData.filter(function (item) { return item.name != name });
             Apple.Grid.loadGrid();
             Apple.Grid.cancelEdit();
@@ -67,13 +63,17 @@ Apple.Grid = (function () {
     };
 
     var SubmitRequest = function (requestType) {
+
+        //Note: This code is updating only to local JSON object. 
+        //In realtime scenario i.e. integration with RESTful service, data is posted via AJAX call.
+
         var name = $('#txtName').val();
         var email = $('#txtEmail').val();
         var title = $('#txtTitle').val();
         var dept = $('#txtDepartment').val();
         var location = $('#txtLocation').val();
         if (isAddMode == true) {
-            EmployeeData.employees.push({
+            gridData.push({
                 name: name,
                 email: email,
                 Title: title,
@@ -96,7 +96,6 @@ Apple.Grid = (function () {
 
     var CancelEdit = function ()
     {
-        $('#editModal').modal('hide');
         $('a[rel="modal:close"]').trigger('click');
     }
 
